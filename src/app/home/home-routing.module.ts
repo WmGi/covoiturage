@@ -6,6 +6,15 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+    children:[{
+      path: ':chatId',
+      loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
+    }
+    ]
+  },
+  {
+    path: ':chatId',
+    loadChildren: () => import('./chat/chat.module').then( m => m.ChatPageModule)
   }
 ];
 

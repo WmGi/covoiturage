@@ -1,0 +1,188 @@
+<body class="bod">
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+        <!-- <ion-button (click)="onOpenMenu()">
+        Open
+      </ion-button> -->
+      </ion-buttons>
+      <ion-title>
+        <img src="../../assets/fithniti4.jpg">
+
+      </ion-title>
+      <ion-label slot="end">
+        <ion-button (click)="search()" fill="clear">
+          <ion-icon name="search"></ion-icon>
+        </ion-button>
+      </ion-label>
+
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="ion-padding">
+
+
+    <ion-grid *ngIf="isLoading">
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+          <ion-spinner color="primary"></ion-spinner>
+        </ion-col>
+      </ion-row>
+
+    </ion-grid>
+    <ion-grid>
+      <ion-row *ngIf="entry">
+        <ion-col size-sm="6">
+          <ion-col>
+            <ion-item>
+              <ion-label>Depart</ion-label>
+              <ion-select (ionChange)="onChange($event)" [(ngModel)]="depart" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="Tunis">Tunis</ion-select-option>
+                <ion-select-option value="Sfax">Sfax</ion-select-option>
+                <ion-select-option value="Gabes">Gabes</ion-select-option>
+                <ion-select-option value="Djerba">Djerba</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <!--  <ion-item>
+        <ion-label position="floating">Depart: </ion-label>
+        <ion-textarea rows="3" formControlName="depart"></ion-textarea>
+      </ion-item>-->
+        </ion-col>
+        <ion-col size-sm="6">
+          <ion-col>
+            <ion-item>
+              <ion-label>Arrive</ion-label>
+              <ion-select (ionChange)="onChange($event)" [(ngModel)]="arrivee" okText="Okay" cancelText="Dismiss">
+                <ion-select-option value="Tunis">Tunis</ion-select-option>
+                <ion-select-option value="Sfax">Sfax</ion-select-option>
+                <ion-select-option value="Gabes">Gabes</ion-select-option>
+                <ion-select-option value="Djerba">Djerba</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <!--  <ion-item>
+        <ion-label position="floating">Arrive: </ion-label>
+        <ion-textarea rows="3" formControlName="arrivee"></ion-textarea>
+      </ion-item>-->
+        </ion-col>
+        <!-- <ion-col size-sm="5">
+        <ion-col>
+          <ion-item>
+            <ion-label>f</ion-label>
+          </ion-item>
+        </ion-col>
+      </ion-col>-->
+      </ion-row>
+    </ion-grid>
+
+    <ion-grid *ngIf=" (loadedtrip.length > 0) && !entry">
+      <!--<ion-row>
+        <ion-col size="12" size-sm="4" offset-sm="1" class="ion-text-center">
+
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ loadedtrip[0].title }}</ion-card-title>
+              <ion-card-subtitle>{{ loadedtrip[0].price | currency }}</ion-card-subtitle>
+            </ion-card-header>
+
+            <ion-img [src]="loadedtrip[0].imageUrl"></ion-img>
+
+            <div>
+              <ion-button fill="clear" color="primary" [routerLink]="[
+                '/',
+                'trip',
+                'tabs',
+                'discover',
+                loadedtrip[0].id
+              ]">
+                More
+              </ion-button>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>-->
+      <ion-row>
+        <ion-col size="12" size-sm="6" offset-sm="2" class="ion-text-center">
+          <!--
+
+          <ion-virtual-scroll [items]="listedLoadedtrip" approxItemHeight="100px">
+
+            <ion-item [routerLink]="['/', 'trip', 'tabs', 'discover', place.id]" detail *virtualItem="let place"
+              approxItemWidth="70px">
+
+              <ion-thumbnail slot="start">
+                <ion-img [src]="place.imageUrl"></ion-img>
+
+              </ion-thumbnail>
+              <ion-label>
+                <div class="havira">
+                  <h2>{{ place.title }}</h2>
+                  <p>{{ place.depart }}/{{ place.arrivee }}</p>
+                </div>
+              </ion-label>
+              <ion-label>
+                <h2>{{ place.price }} DT</h2>
+                <h2>{{ place.conduit }} DT</h2>
+              </ion-label>
+            </ion-item>
+
+
+
+          </ion-virtual-scroll>
+          -->
+          <div *ngFor="let place of listedLoadedtrip">
+
+            <ion-item no-padding lines="none" [routerLink]="['/', 'trip', 'tabs', 'discover', place.id]" detail>
+              <ion-avatar slot="start">
+                <img [src]="place.imageUrl">
+              </ion-avatar>
+              <ion-label>{{ place.title }}</ion-label>
+              <ion-icon name="bookmark"></ion-icon>
+
+            </ion-item>
+            <img class="post_img" [src]="place.imageUrl">
+            <div class=" flex-button">
+              <div>
+                <ion-icon name="heart"></ion-icon>
+
+              </div>
+            </div>
+            <p class="insta-text"><b>{{ place.depart }}/{{ place.arrivee }}</b></p>
+            <p class="insta-text"><b>{{ place.price}} DT</b>
+              {{ place.description }} </p>
+            <br>
+          </div>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-grid *ngIf=" (listedLoadedtrip.length > 0 ) && entry">
+      <ion-row>
+        <ion-col *ngIf=" (listedLoadedtripse?.length > 0 )" size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+          <ion-virtual-scroll [items]="listedLoadedtripse" approxItemHeight="100px">
+            <ion-item [routerLink]="['/', 'trip', 'tabs', 'discover', place.id]" detail *virtualItem="let place">
+
+              <ion-thumbnail slot="start">
+                <!--n7outtouha fi ion-thumbnail bech todher behia-->
+                <img [src]="place.imageUrl">
+
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{{ place.title }}</h2>
+                <p>{{ place.description }}</p>
+              </ion-label>
+
+
+            </ion-item>
+          </ion-virtual-scroll>
+        </ion-col>
+        <ion-col *ngIf=" (listedLoadedtripse?.length <= 0 )" size="12" size-sm="8" offset-sm="2"
+          class="ion-text-center">
+          No trips were found</ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-content>
+</body>

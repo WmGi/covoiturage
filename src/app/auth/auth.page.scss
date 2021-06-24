@@ -1,0 +1,42 @@
+.button-native {
+  border-radius: 900px;
+}
+.fu {
+  //Or
+  --padding-bottom: 20px;
+  --border-radius: 400px;
+}
+img {
+  width: 70px;
+  height: 70px;
+}
+ion-icon {
+  color: rgb(54, 133, 223);
+  vertical-align: middle;
+}
+ion-button {
+  --border-radius: 20px;
+  --padding-start: 50px;
+}
+.hot {
+  background-color: transparent;
+}
+ion-input {
+  --placeholder-font-style: "roboto";
+  --placeholder-color: rgb(200, 200, 200);
+  font-family: "roboto";
+}
+ion-item {
+  --background: transparent;
+}
+ion-content {
+  --background: linear-gradient(132deg, #ffffff, #ffffff, #ffffff);
+  background-size: 400% 400%;
+  animation: Gradient 15s ease infinite;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0px;
+}

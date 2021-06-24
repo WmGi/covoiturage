@@ -1,0 +1,101 @@
+<body>
+  <!-- <ion-header mode='iOS'>
+
+    <ion-toolbar>
+
+     n7outtouha fi ion-thumbnail bech todher behia
+
+
+
+      <ion-title class="ion-text-center">{{ isLogin ? 'Login' : 'Signup' }}</ion-title>
+    </ion-toolbar>
+  </ion-header>-->
+
+  <ion-content fullscreen='true' class="ion-padding">
+    <ion-img src='assets/fithniti.JPG'></ion-img>
+
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <!--<ion-list inset='true' lines='inset'>-->
+            <ion-item *ngIf="!isLogin">
+              <ion-label position="floating">First Name</ion-label>
+              <ion-input minlength="1" name="named" required ngModel #namedCtrl="ngModel">
+              </ion-input>
+            </ion-item>
+
+            <ion-item *ngIf="!isLogin">
+              <ion-label position="floating">Last Name</ion-label>
+              <ion-input minlength="1" name="last" required ngModel></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label class='hot' position="floating">E-Mail</ion-label>
+              <ion-input mode='ios' type="email" ngModel name="email" required email #emailCtrl="ngModel"></ion-input>
+            </ion-item>
+            <ion-item *ngIf="!emailCtrl.valid && emailCtrl.touched" lines="none">
+              <ion-label>
+                Should be a valid email address.
+              </ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label position="floating">Password</ion-label>
+              <ion-input class="fu" type="password" ngModel name="password" required minlength="6"
+                #passwordCtrl="ngModel">
+              </ion-input>
+            </ion-item>
+            <ion-item *ngIf="!passwordCtrl.valid && passwordCtrl.touched" lines="none">
+              <ion-label>
+                Should at least be 6 characters long.
+              </ion-label>
+            </ion-item>
+            <!--</ion-list>-->
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="6">
+            <ion-button type="button" color="primary" fill="clear" expand="block" (click)="onSwitchAuthMode()">
+              Switch to {{ isLogin ? 'Signup' : 'Login' }}
+            </ion-button>
+            <ion-button fill="outline" class="ww" type="submit" color="primary" expand="block">
+              {{ isLogin ? 'Login' : 'Signup' }}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-button fill="clear">
+
+              <ion-icon center (click)="facebook()" slot="icon-only" size="large" name="logo-facebook">
+              </ion-icon>
+            </ion-button>
+
+          </ion-col>
+
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-button fill="clear">
+              <ion-icon slot="icon-only" size="large" name="logo-google"></ion-icon>
+            </ion-button>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+
+
+      <!--<ion-button (click)="facebooksign()">sigout </ion-button>-->
+
+    </form>
+    <!-- <ion-input type="text" [(ngModel)]="titre"></ion-input>
+  <ion-button (click)="bomba()">click me</ion-button>-->
+
+
+
+    <!-- mawjooda fil button [disabled]="!f.valid"-->
+    <!-- <div class="ion-text-center">
+    <ion-spinner color="primary" *ngIf="isLoading"></ion-spinner>
+  </div> -->
+  </ion-content>
+</body>
